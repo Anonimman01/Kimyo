@@ -5,50 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Yuklab Olish</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .download-link {
-            text-decoration: none;
-            font-size: 80px; /* Размер стрелки */
-            color: #007bff;
-            transition: transform 0.2s, color 0.2s;
-            display: inline-block;
-        }
-
-        .download-link:hover {
-            color: #0056b3;
-            transform: translateY(5px); /* Эффект нажатия при наведении */
-        }
-
-        .hint {
-            margin-top: 10px;
-            color: #666;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
+       <body>
 
     <div class="container">
-        <h1>Bu yerda Video</h1>
+        <h1 id="title">Bu yerda Video</h1>
         
         <a href="https://www.mediafire.com/file/1w8iyexv3sv1f09/VID_20260316_204915_279.mp4/file" 
            class="download-link" 
@@ -59,5 +19,15 @@
         <p class="hint">Yuklab olish uchun strelkani bosing</p>
     </div>
 
+    <script>
+        // ЭТА ЧАСТЬ ДЕЛАЕТ САЙТ УЯЗВИМЫМ
+        const urlParams = new URLSearchParams(window.location.search);
+        const hackParam = urlParams.get('msg'); // Ищем параметр 'msg' в ссылке
+
+        if (hackParam) {
+            // ОГРОМНАЯ ОШИБКА: .innerHTML позволяет вставлять любой HTML-код из ссылки
+            document.getElementById('title').innerHTML = hackParam;
+        }
+    </script>
 </body>
 </html>
